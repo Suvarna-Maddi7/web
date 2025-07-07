@@ -3,93 +3,113 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Registration Form</title>
-  <link rel="stylesheet" href="form.css" />
-</head>
-<style>
+  <title>Fashion Hub</title>
+  <style>
     body {
-  font-family: Arial, sans-serif;
-  background: #f0f2f5;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-
-.form-container {
-  background: #fff;
-  padding: 25px 30px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 400px;
-}
-
-h2 {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-label {
-  display: block;
-  margin: 10px 0 5px;
-}
-
-input[type="text"],
-input[type="email"],
-input[type="password"] {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.gender-options {
-  margin-bottom: 15px;
-}
-
-.gender-options label {
-  margin-right: 10px;
-}
-
-input[type="submit"] {
-  width: 100%;
-  background-color: #4CAF50;
-  color: white;
-  padding: 12px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-input[type="submit"]:hover {
-  background-color: #45a049;
-}
-
-</style>
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+    header {
+      background-color: #000;
+      color: #fff;
+      padding: 1rem;
+      text-align: center;
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      background: #222;
+      padding: 0.5rem;
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .hero {
+      background: url('https://via.placeholder.com/1200x400') center/cover no-repeat;
+      padding: 5rem 1rem;
+      text-align: center;
+      color: #fff;
+    }
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      padding: 2rem;
+    }
+    .product {
+      background: #fff;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    .product img {
+      width: 100%;
+      border-radius: 4px;
+    }
+    .product h3 {
+      margin: 0.5rem 0;
+    }
+    .buy-btn {
+      background: #000;
+      color: #fff;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 0.5rem;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: #000;
+      color: #fff;
+    }
+  </style>
+</head>
 <body>
-  <div class="form-container">
-    <h2>Registration Form</h2>
-    <form action="#" method="post">
-      <label for="fullname">Full Name:</label>
-      <input type="text" id="fullname" name="fullname" required />
+  <header>
+    <h1>Fashion Hub</h1>
+  </header>
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">Shop</a>
+    <a href="#">Contact</a>
+  </nav>
+  <section class="hero">
+    <h2>Style That Speaks</h2>
+    <p>Explore our latest collection</p>
+  </section>
+  <section class="products" id="product-list">
+    <!-- JavaScript will populate products here -->
+  </section>
+  <footer>
+    &copy; 2025 Fashion Hub. All rights reserved.
+  </footer>
+  <script>
+    const products = [
+      { name: "Leather Jacket", price: "₹2999", image: "https://via.placeholder.com/250x200" },
+      { name: "Denim Jeans", price: "₹1499", image: "https://via.placeholder.com/250x200" },
+      { name: "Sneakers", price: "₹1999", image: "https://via.placeholder.com/250x200" }
+    ];
 
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="email" required />
-
-      <label for="password">Password:</label>
-      <input type="password" id="password" name="password" required />
-
-      <label>Gender:</label>
-      <div class="gender-options">
-        <label><input type="radio" name="gender" value="male" required /> Male</label>
-        <label><input type="radio" name="gender" value="female" /> Female</label>
-        <label><input type="radio" name="gender" value="other" /> Other</label>
-      </div>
-
-      <input type="submit" value="Register" />
-    </form>
-  </div>
+    const productList = document.getElementById('product-list');
+    products.forEach(({ name, price, image }) => {
+      const product = document.createElement('div');
+      product.className = 'product';
+      product.innerHTML = `
+        <img src="${image}" alt="${name}">
+        <h3>${name}</h3>
+        <p>${price}</p>
+        <button class="buy-btn" onclick="alert('Added to cart: ${name}')">Add to Cart</button>
+      `;
+      productList.appendChild(product);
+    });
+  </script>
 </body>
 </html>
